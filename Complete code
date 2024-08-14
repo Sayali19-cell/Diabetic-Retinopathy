@@ -1,0 +1,57 @@
+#Import Libraries
+import numpy as np
+import cv2
+import os
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report, accuracy_score
+from skimage import feature
+from skimage.filters import laplace
+import matplotlib.pyplot as plt
+
+#Load and Preprocess Fundus Images
+def load_images_from_folder(fundus_images):
+    images = []
+    labels = []
+    for filename in os.listdir(fundus_images):
+        img = cv2.imread(os.path.join(sundus_images, image1))
+        if img is not None:
+            img = cv2.resize(img, (256, 256))  # Resize images to a consistent size
+            images.append(img)
+            label = 1 if 'positive' in filename else 0  # Example label extraction
+            labels.append(label)
+    return np.array(images), np.array(labels)
+images, labels = load_images_from_folder('fundus_images/')
+
+#Feature Engineering (Using Laplace Operator and FVM)
+def preprocess_and_extract_features(images):
+    features = []
+    for img in images:
+        gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        laplace_img = laplace(gray_img)  # Apply Laplace operator
+        hist = feature.local_binary_pattern(laplace_img, P=8, R=1, method="uniform")  # Example feature: LBP
+        features.append(hist.flatten())
+    return np.array(features)
+
+# Extract features
+X = preprocess_and_extract_features(images)
+
+#Train-Test Split
+X_train, X_test, y_train, y_test = train_test_split(X, labels, test_size=0.2, random_state=42)
+
+#Train SVM Model
+svm_model = SVC(kernel='linear', C=1.0)
+svm_model.fit(X_train, y_train)
+
+#Evaluate the Mode
+y_pred = svm_model.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Classification Report:\n", classification_report(y_test, y_pred))
+
+#Visulization on results
+for i in range(5):
+    plt.imshow(X_test[i].reshape(256, 256), cmap='gray')
+    plt.title(f'Prediction: {"Positive" if y_pred[i] == 1 else "Negative"}')
+    plt.show()
+
+
