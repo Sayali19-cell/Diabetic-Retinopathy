@@ -1,0 +1,5 @@
+Explanation:
+1.	Image Preprocessing: The images are first converted to grayscale, and the Laplace operator is applied to detect edges, which is useful for identifying retinal abnormalities.
+2.	Feature Extraction: The Local Binary Pattern (LBP) is used as an example feature extraction technique. Depending on the dataset and requirements, this can be replaced or supplemented with more sophisticated methods.
+3.	Model Training: The SVM classifier is trained on the extracted features to distinguish between positive (with abnormalities) and negative (without abnormalities) cases.
+4.	Evaluation: The trained model is evaluated using standard metrics such as accuracy and classification report
