@@ -1,0 +1,45 @@
+1.Start
+
+2.Data Collection
+•	Source: Fundus images of the retina from medical databases.
+•	Labels: Annotation of images as diabetic retinopathy stages (e.g., no DR, mild, moderate, severe, proliferative DR).
+
+3.Data Preprocessing
+•	Image Resizing: Standardize image dimensions.
+•	Normalization: Adjust pixel values for consistent input.
+•	Augmentation: Apply techniques like rotation, flipping, and zooming to increase dataset size.
+
+4.Exploratory Data Analysis (EDA)
+•	Visualize Images: Check for quality and variations in the dataset.
+•	Class Distribution: Analyze the distribution of different stages of diabetic retinopathy.
+
+5.Data Splitting
+•	Train/Test Split: Divide data into training (e.g., 80%) and test (e.g., 20%) sets.
+
+6.Feature Extraction
+•	Techniques: Use methods like Histogram of Oriented Gradients (HOG), Laplace operator, and others to extract features from images.
+
+7.Model Selection
+•	Algorithm Choice: Select models such as SVM(Support Vector Machine) for image classification.
+
+8.Model Training
+•	Train the SVM model on the training dataset using extracted features.
+
+9.Model Evaluation
+•	Metrics: Evaluate using Accuracy, Precision, Recall, F1 Score, Confusion Matrix, ROC-AUC curve.
+
+10.Model Optimization
+•	Hyperparameter Tuning: Optimize parameters like learning rate, batch size, and number of epochs.
+•	Model Refinement: Address overfitting or underfitting.
+
+11.Model Testing
+•	Validate the final model on the test dataset.
+
+12.Model Deployment
+•	Integrate the model into a clinical decision support system for real-time detection.
+
+13.Monitoring and Maintenance
+•	Monitor model performance over time.
+•	Update the model with new data to maintain accuracy.
+
+14.End
